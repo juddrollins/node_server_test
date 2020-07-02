@@ -1,2 +1,16 @@
-
-hello world
+<!DOCTYPE html>
+<html>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<body>
+<script>
+    if('geolocation' in navigator){
+        navigator.geolocation.getCurrentPosition( position => {
+            console.log(position.coords);
+        });
+    }
+    else{
+        console.log("location not available")
+    }
+</script>
+</body>
+</html>
