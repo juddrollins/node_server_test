@@ -23,6 +23,17 @@ app.post("/api", (request, response) => {
     status:'success',
     timestamp: data.timestamp,
     latitude: data.latitude,
-    longitude: data.longitude
+    longitude: data.longitude,
+    tag: data.tag
   });
+});
+
+app.get("/api", (request, response) => {
+  database.find({}, (err, data) => {
+    if(err){
+      console.log(err)
+      response.end()
+    }
+    response.json(data)
+  })
 });

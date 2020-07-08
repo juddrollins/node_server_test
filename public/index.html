@@ -4,9 +4,17 @@
 
 <body>
   <script>
-    function submit(){
+    function submit() {
       if ('geolocation' in navigator) {
         navigator.geolocation.getCurrentPosition(async position => {
+
+          //Get tag from form and make sure text has been input
+          const tag = document.getElementById('tag').value
+
+          if (tag.trim() === "") {
+            console.log('User Must Input Data')
+            return;
+          }
 
           // Get longitude and latitude from navigator
           const latitude = position.coords.latitude;
@@ -16,7 +24,7 @@
           document.getElementById('longitude').textContent = longitude;
 
           // Create Post request
-          const data = { latitude, longitude };
+          const data = { latitude, longitude, tag };
           const options = {
             method: 'POST',
             headers: {
@@ -41,6 +49,7 @@
     latitude: <span id='latitude'></span>&deg;</br>
     longitude: <span id='longitude'></span>&deg;
   </p>
+  <input type="text" id="tag" placeholder="Input Tag"> </input>
   <button type="button" onclick="submit()">Submit</button>
 </body>
 
