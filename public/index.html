@@ -9,7 +9,7 @@
         navigator.geolocation.getCurrentPosition(async position => {
 
           //Get tag from form and make sure text has been input
-          const tag = document.getElementById('tag').value
+          let tag = document.getElementById('tag').value
 
           if (tag.trim() === "") {
             console.log('User Must Input Data')
@@ -36,6 +36,9 @@
           const response = await fetch('/api', options);
           const json = await response.json();
           console.log(json);
+
+          document.getElementById('tag').value = ''
+          
         });
       }
       else {
